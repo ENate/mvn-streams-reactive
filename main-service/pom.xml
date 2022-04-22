@@ -6,11 +6,16 @@
 
   <groupId>com.minejava</groupId>
   <artifactId>main-service</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
 
+  <modules>
+    <module>p-service</module>
+  </modules>
+
   <name>main-service</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
+  <!-- FIXED change it to the project's website -->
+  <url>http://www.main-service.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
