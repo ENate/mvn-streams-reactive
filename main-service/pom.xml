@@ -50,13 +50,13 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
+  
   <!-- Building dependencies -->
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>com.springframework.boot</groupId>
+          <groupId>org.springframework.boot</groupId>
          <artifactId>spring-boot-maven-plugin</artifactId>
          <version>${spring.boot.maven.plugin.version}</version>
         </plugin>
