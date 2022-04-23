@@ -1,5 +1,5 @@
 package com.minejava.cservice;
 
-public class ConsumerApplicationTests {
+public class CserviceApplicationTests {
     // write tests
 }
