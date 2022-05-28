@@ -12,8 +12,14 @@
     <artifactId>m-service</artifactId>
 
     <properties>
+        <project.build.SourceEncoding>UTF-8</project.build.SourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
-
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+</dependencies>
 </project>

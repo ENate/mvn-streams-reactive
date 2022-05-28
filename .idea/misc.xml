@@ -13,20 +13,24 @@
     <option name="openedFilesInfos">
       <list>
         <OpenedFileInfo>
-          <option name="caretOffset" value="1202" />
+          <option name="caretOffset" value="1309" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/pom.xml" />
-        </OpenedFileInfo>
-        <OpenedFileInfo>
-          <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/m-service/pom.xml" />
         </OpenedFileInfo>
         <OpenedFileInfo>
           <option name="caretOffset" value="31" />
           <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/m-service/src/main/java/com/minejava/mservice/MServiceApplication.java" />
         </OpenedFileInfo>
         <OpenedFileInfo>
+          <option name="caretOffset" value="224" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/p-service/src/main/java/com/minejava/pservice/PServiceApplication.java" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
           <option name="caretOffset" value="0" />
-          <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/m-service/src/test/java/com/minejava/mservice/MServiceApplicationTests.java" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/p-service/pom.xml" />
+        </OpenedFileInfo>
+        <OpenedFileInfo>
+          <option name="caretOffset" value="494" />
+          <option name="fileUrl" value="file://$PROJECT_DIR$/main-service/m-service/pom.xml" />
         </OpenedFileInfo>
       </list>
     </option>
