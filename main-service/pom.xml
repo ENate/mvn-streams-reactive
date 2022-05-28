@@ -19,6 +19,7 @@
   <modules>
     <module>p-service</module>
     <module>c-service</module>
+    <module>m-service</module>
   </modules>
 
   <name>main-service</name>
