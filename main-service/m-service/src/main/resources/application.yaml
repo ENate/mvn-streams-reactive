@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            database: real_mongodb
+
+# mongodb
+#spring.data.mongodb.host=localhost
+#spring.data.mongodb.port=27017
+#spring.data.mongodb.database=testdb
