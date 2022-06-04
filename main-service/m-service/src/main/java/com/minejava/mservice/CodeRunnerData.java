@@ -19,7 +19,8 @@ public class CodeRunnerData implements CommandLineRunner{
     private static final Logger logger = LoggerFactory.getLogger(CodeRunnerData.class);
 
     @Autowired
-    private ICityService cityService;
+    public ICityService cityService;
+    
     @Override
     public void run(String... args) throws Exception {
         // DO Auto-generated method stub

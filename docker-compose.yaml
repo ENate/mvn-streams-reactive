@@ -9,6 +9,6 @@ services:
     volumes:
       - ~/apps/mongo:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME:root
-      - MONGO_INITDB_ROOT_PASSWORD:example
-      - MONGO_INITDB_DATABASE:testdb
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: testdb
