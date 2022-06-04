@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.minejava.mservice.model.City;
-import com.minejava.mservice.service.ICityService;
+import com.minejava.mservice.repository.CityRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,7 +19,7 @@ public class CodeRunnerData implements CommandLineRunner{
     private static final Logger logger = LoggerFactory.getLogger(CodeRunnerData.class);
 
     @Autowired
-    public ICityService cityService;
+    private CityRepository cityRepository;
     
     @Override
     public void run(String... args) throws Exception {
@@ -31,10 +31,10 @@ public class CodeRunnerData implements CommandLineRunner{
                 new City("NBHG21", "Prague", 1280000),
                 new City("HJKI89","Warsaw", 1748000));
 
-        Mono<Void> one = cityService.deleteAll();
+        Mono<Void> one = cityRepository.deleteAll();
 
-        Flux<City> two = cityService.saveAll(cities);
-        Flux<City> three = cityService.findAll();
+        Flux<City> two = cityRepository.saveAll(cities);
+        Flux<City> three = cityRepository.findAll();
         three.subscribe(city -> logger.info("{}", city));
 
         Mono<Void> all = Mono.when(one, two, three);
