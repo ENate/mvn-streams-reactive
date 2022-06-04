@@ -25,10 +25,10 @@ public class CodeRunnerData implements CommandLineRunner{
         // DO Auto-generated method stub
         logger.info("Creating cities");
 
-        var cities = List.of(new City("Bratislava", 432000),
-                new City("Budapest", 1759000),
-                new City("Prague", 1280000),
-                new City("Warsaw", 1748000));
+        var cities = List.of(new City("BRDG23", "Bratislava", 432000),
+                new City("GHD65T", "Budapest", 1759000),
+                new City("NBHG21", "Prague", 1280000),
+                new City("HJKI89","Warsaw", 1748000));
 
         Mono<Void> one = cityService.deleteAll();
 
@@ -39,5 +39,4 @@ public class CodeRunnerData implements CommandLineRunner{
         Mono<Void> all = Mono.when(one, two, three);
         all.block();
     }
-    
 }
