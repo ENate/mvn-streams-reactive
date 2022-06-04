@@ -1,14 +1,14 @@
 package com.minejava.pservice.domain;
 
 import java.math.BigDecimal;
+import org.springframework.data.annotation.Id;
 
 import lombok.Data;
 
 @Data
-@Table(name = "Book")
 public class Book {
-    
-    
+
+    @Id
     private Long id;
     private String title;
     private String isbn;

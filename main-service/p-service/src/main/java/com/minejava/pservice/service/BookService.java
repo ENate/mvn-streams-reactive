@@ -1,5 +1,6 @@
 package com.minejava.pservice.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.minejava.pservice.domain.Book;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class BookService {
 
+    @Autowired
     private final BookRepository bookRepository;
 
     public Flux<Book> findAll() {
