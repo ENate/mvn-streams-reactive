@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class CodeRunnerData implements CommandLineRunner{
-    private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
+    private static final Logger logger = LoggerFactory.getLogger(CodeRunnerData.class);
 
     @Autowired
     private ICityService cityService;
