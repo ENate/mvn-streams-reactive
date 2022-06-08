@@ -7,7 +7,6 @@ import com.minejava.pservice.domain.Book;
 import com.minejava.pservice.repository.BookRepository;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -27,16 +26,7 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
-    public Mono<Book> save(Book book) {
-        return bookRepository.save(
-            new Book(
-                book.getTitle(),
-                book.getIsbn(),
-                book.getAuthor(),
-                book.getPrice()
-            )
-        ).subscribe();
-    }
+    
 
     public Flux<Book> findByAuthor(String author) {
         return bookRepository.findBooksByAuthorContainingIgnoreCase(author);
