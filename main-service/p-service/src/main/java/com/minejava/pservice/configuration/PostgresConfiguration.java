@@ -1,17 +1,24 @@
 package com.minejava.pservice.configuration;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
+import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
+
+import io.r2dbc.spi.ConnectionFactory;
 
 @Configuration
 public class PostgresConfiguration {
-    
-    @Value("${spring.r2dbc.url}")
-    private String url;
-    @Value("${spring.r2dbc.username}")
-    private String username;
-    @Value("${spring.r2dbc.password}")
-    private String password;
 
-    
+    @Bean
+    public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
+        initializer.setConnectionFactory(connectionFactory);
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator(new ClassPathResource("schema.sql"));
+        initializer.setDatabasePopulator(populator);
+        return initializer;
+    }
+
+
 }

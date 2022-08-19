@@ -1,5 +1,4 @@
 package com.minejava.pservice.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class BookService {
 
     @Autowired
@@ -20,13 +19,13 @@ public class BookService {
     public Flux<Book> findAll() {
         return bookRepository.findAll();
     }
-    
+
     // Mono returns 0 to 1
     public Mono<Book> findById(Long id)  {
         return bookRepository.findById(id);
     }
 
-    
+
 
     public Flux<Book> findByAuthor(String author) {
         return bookRepository.findBooksByAuthorContainingIgnoreCase(author);
