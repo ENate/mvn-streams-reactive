@@ -1,43 +1,45 @@
 package com.minejava.mservice;
 
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.minejava.mservice.model.City;
-import com.minejava.mservice.repository.CityRepository;
+import com.minejava.mservice.model.Post;
+import com.minejava.mservice.repository.PostRepository;
 
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
+@Slf4j
 @Component
-public class CodeRunnerData implements CommandLineRunner{
-    private static final Logger logger = LoggerFactory.getLogger(CodeRunnerData.class);
+public class CodeRunnerData implements CommandLineRunner {
 
-    @Autowired
-    private CityRepository cityRepository;
-    
+
+    private final PostRepository posts;
+
+    public CodeRunnerData(PostRepository posts) {
+        this.posts = posts;
+    }
+
     @Override
     public void run(String... args) throws Exception {
         // DO Auto-generated method stub
-        logger.info("Creating cities");
+        log.info("start data initialization  ...");
+        this.posts
+            .deleteAll()
+            .thenMany(
+                Flux
+                    .just("Post one", "Post two")
+                    .flatMap(
+                        title -> this.posts.save(Post.builder().title(title).content("content of " + title).build())
+                    )
+            )
+            .log()
+            .subscribe(
+                null,
+                null,
+                () -> log.info("done initialization...")
+            );
 
-        var cities = List.of(new City("BRDG23", "Bratislava", 432000),
-                new City("GHD65T", "Budapest", 1759000),
-                new City("NBHG21", "Prague", 1280000),
-                new City("HJKI89","Warsaw", 1748000));
-
-        Mono<Void> one = cityRepository.deleteAll();
-
-        Flux<City> two = cityRepository.saveAll(cities);
-        Flux<City> three = cityRepository.findAll();
-        three.subscribe(city -> logger.info("{}", city));
-
-        Mono<Void> all = Mono.when(one, two, three);
-        all.block();
     }
+
 }

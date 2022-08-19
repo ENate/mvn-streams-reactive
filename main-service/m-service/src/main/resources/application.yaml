@@ -1,15 +1,26 @@
 server:
-  port: 8081
-
+    port: 8081
 spring:
   data:
     mongodb:
-      host:localhost
-      port:27017
-      username:root
-      password:example
-      database:person_db
-      authentication-database:testdb
+      uri: mongodb://root:root@localhost:27017/persondb?authSource=admin&authMechanism=SCRAM-SHA-1
+      authentication-database: admin
+#spring.data.mongodb.host=localhost
+#spring.data.mongodb.port=27017
+#spring.data.mongodb.username=localhost
+#spring.data.mongodb.password=localhost
+#spring.data.mongodb.database=person_db
+#spring.data.mongodb.authentication-database=testdb
+
+#spring:
+#  data:
+#    mongodb:
+#      host:localhost
+#      port:27017
+#      username:root
+#      password:example
+#      database:person_db
+#      authentication-database:testdb
 
 # mongodb
 #spring.data.mongodb.host=localhost

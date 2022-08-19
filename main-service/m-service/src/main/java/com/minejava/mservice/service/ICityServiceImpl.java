@@ -1,49 +1,83 @@
 package com.minejava.mservice.service;
 
+import java.util.Collections;
 import java.util.List;
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.minejava.mservice.model.City;
-import com.minejava.mservice.repository.CityRepository;
+import com.minejava.mservice.model.Post;
+import org.springframework.data.domain.Sort;
+import com.minejava.mservice.repository.PostRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public class ICityServiceImpl implements ICityService{
+@Service
+@Transactional
+public class ICityServiceImpl implements IPostService {
 
-    @Autowired
-    private CityRepository cityRepository;
+    private PostRepository postRepository;
+    private final ReactiveMongoTemplate reactiveMongoTemplate;
 
-    @Override
-    public Mono<City> insert(City city) {
-        // DO Auto-generated method stub
-        City c = new City("ER453", "Maskerder trui", 4567);
-        return cityRepository.save(c);
+
+    public ICityServiceImpl(PostRepository postRepositoryList, ReactiveMongoTemplate reactiveMongoTemplate) {
+        this.postRepository = postRepositoryList;
+        this.reactiveMongoTemplate = reactiveMongoTemplate;
+
+
     }
 
     @Override
-    public Flux<City> saveAll(List<City> cities) {
+    public Flux<Post> findAll(List<Post> posts) {
+        // Create posts
         // DO Auto-generated method stub
-        return null;
+        return postRepository.findAll();
     }
 
     @Override
-    public Mono<City> findById(String id) {
+    public Mono<Post> updatePost(String postId, Post post) {
         // DO Auto-generated method stub
-        return null;
+         return postRepository.findById(postId)
+        .flatMap(dbUser -> {
+            dbUser.setTitle(post.getTitle());
+            dbUser.setContent(post.getContent());
+            return postRepository.save(dbUser);
+        });
     }
 
     @Override
-    public Flux<City> findAll() {
-        // DO Auto-generated method stub
-        return null;
+    public Mono<Post> findById(String pById) {
+        return postRepository.findById(pById);
     }
 
     @Override
-    public Mono<Void> deleteAll() {
-        // DO Auto-generated method stub
-        return null;
+    public Mono<Post> createPost(Post post) {
+
+        return postRepository.save(post);
     }
-    
+
+    public Mono<Post> deletePost(String pId){
+        return postRepository.findById(pId)
+                .flatMap(existingUser -> postRepository.delete(existingUser)
+                        .then(Mono.just(existingUser)));
+    }
+
+    public Flux<Post> fetchUsers(String name) {
+        Query query = new Query()
+                .with(Sort
+                        .by(Collections.singletonList(Sort.Order.asc("number")))
+                );
+        query.addCriteria(Criteria
+                .where("name")
+                .regex(name)
+        );
+
+        return reactiveMongoTemplate
+        .find(query, Post.class);
+}
+
+
 }

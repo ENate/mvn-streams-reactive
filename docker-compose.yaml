@@ -7,11 +7,14 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ~/apps/mongo:/data/db
+      - ~/apps/mongodb:/var/lib/mongodb/data
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
-      MONGO_INITDB_DATABASE: testdb
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: admin
+      MONGO_DB_USERNAME: mando
+      MONGO_DB_PASSWORD: mantung
+      command: --smallfiles --rest
   postgres:
     image: postgres:14-alpine
     container_name: postgres

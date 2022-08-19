@@ -30,8 +30,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <spring.boot.maven.plugin.version>2.6.7</spring.boot.maven.plugin.version>
-    <spring.boot.dependencies.version>2.6.7</spring.boot.dependencies.version>
+    <spring.boot.maven.plugin.version>2.7.1</spring.boot.maven.plugin.version>
+    <spring.boot.dependencies.version>2.7.1</spring.boot.dependencies.version>
   </properties>
 
   <dependencyManagement>
@@ -62,9 +62,9 @@
       <artifactId>reactor-test</artifactId>
       <scope>test</scope>
     </dependency>
-    
+
   </dependencies>
-  
+
   <!-- Building dependencies -->
   <build>
     <pluginManagement>
@@ -77,5 +77,5 @@
       </plugins>
     </pluginManagement>
   </build>
-  
+
 </project>
