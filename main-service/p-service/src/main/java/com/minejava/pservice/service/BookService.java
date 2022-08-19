@@ -25,6 +25,10 @@ public class BookService {
         return bookRepository.findById(id);
     }
 
+    public Mono<Book> createBook(Book book) {
+        return bookRepository.save(book);
+    }
+
 
 
     public Flux<Book> findByAuthor(String author) {

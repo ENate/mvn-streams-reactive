@@ -17,13 +17,13 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Transactional
-public class ICityServiceImpl implements IPostService {
+public class IPostServiceImpl implements IPostService {
 
     private PostRepository postRepository;
     private final ReactiveMongoTemplate reactiveMongoTemplate;
 
 
-    public ICityServiceImpl(PostRepository postRepositoryList, ReactiveMongoTemplate reactiveMongoTemplate) {
+    public IPostServiceImpl(PostRepository postRepositoryList, ReactiveMongoTemplate reactiveMongoTemplate) {
         this.postRepository = postRepositoryList;
         this.reactiveMongoTemplate = reactiveMongoTemplate;
 
