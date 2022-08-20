@@ -9,6 +9,8 @@ logging:
                     r2dbc: DEBUG
 
 spring:
+   webflux:
+       base-path: /api
 
    r2dbc:
       url: r2dbc:postgresql://postgres_user:S3cret@localhost:5432/postgres_db

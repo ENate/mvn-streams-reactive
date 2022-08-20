@@ -1,7 +1,6 @@
 package com.minejava.mservice.service;
 
 import java.util.Collections;
-import java.util.List;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -31,7 +30,7 @@ public class IPostServiceImpl implements IPostService {
     }
 
     @Override
-    public Flux<Post> findAll(List<Post> posts) {
+    public Flux<Post> getAllPosts() {
         // Create posts
         // DO Auto-generated method stub
         return postRepository.findAll();

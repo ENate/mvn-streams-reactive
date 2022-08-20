@@ -8,7 +8,7 @@ import com.minejava.pservice.domain.Book;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface BookRepository extends R2dbcRepository<Book, Long> {
+public interface BookRepository extends R2dbcRepository<Book, String> {
     Flux<Book> findBooksByAuthorContainingIgnoreCase(String author);
 
 }

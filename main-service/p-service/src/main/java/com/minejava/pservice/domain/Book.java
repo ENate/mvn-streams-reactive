@@ -20,7 +20,10 @@ import lombok.ToString;
 public class Book {
 
     @Id
-    private UUID id;
+    //private UUID id;
+    @Builder.Default
+    private UUID id = UUID.randomUUID();
+
 
     @Column("title")
     private String title;
@@ -32,10 +35,10 @@ public class Book {
     private String author;
 
     @Column("price")
-    private BigDecimal price;
+    private Double price;
 
 
-    public Book(String title, String isbn, String author, BigDecimal price) {
+    public Book(String title, String isbn, String author, Double price) {
         this.title = title;
         this.isbn = isbn;
         this.author = author;

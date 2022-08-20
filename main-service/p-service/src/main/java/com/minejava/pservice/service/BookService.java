@@ -1,4 +1,5 @@
 package com.minejava.pservice.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+
 @RequiredArgsConstructor
 @Service
 public class BookService {
@@ -16,12 +18,12 @@ public class BookService {
     @Autowired
     private final BookRepository bookRepository;
 
-    public Flux<Book> findAll() {
+    public Flux<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
     // Mono returns 0 to 1
-    public Mono<Book> findById(Long id)  {
+    public Mono<Book> findById(String id)  {
         return bookRepository.findById(id);
     }
 
@@ -35,7 +37,9 @@ public class BookService {
         return bookRepository.findBooksByAuthorContainingIgnoreCase(author);
     }
 
-    public void deleteById(Long id) {
-        bookRepository.deleteById(id).subscribe();
+    public Mono<Book> deleteBookById(String userId){
+        return bookRepository.findById(userId)
+                .flatMap(existingUser -> bookRepository.delete(existingUser)
+                        .then(Mono.just(existingUser)));
     }
 }

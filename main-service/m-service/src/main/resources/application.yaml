@@ -1,10 +1,27 @@
 server:
     port: 8081
 spring:
+  webflux:
+      base-path: /api
   data:
     mongodb:
       uri: mongodb://root:root@localhost:27017/persondb?authSource=admin&authMechanism=SCRAM-SHA-1
       authentication-database: admin
+logging:
+  level:
+    io:
+      reflectoring: DEBUG
+    org:
+      springframework:
+        web: INFO
+        data:
+          mongodb:
+            core:
+              ReactiveMongoTemplate: DEBUG
+    reactor:
+      netty:
+        http:
+          client: DEBUG
 #spring.data.mongodb.host=localhost
 #spring.data.mongodb.port=27017
 #spring.data.mongodb.username=localhost
