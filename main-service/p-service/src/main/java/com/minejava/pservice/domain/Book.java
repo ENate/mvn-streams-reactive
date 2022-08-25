@@ -1,6 +1,5 @@
 package com.minejava.pservice.domain;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
