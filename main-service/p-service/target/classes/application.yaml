@@ -3,6 +3,8 @@ server:
 
 logging:
     level:
+        io:
+            reflectoring: DEBUG
         org:
             springframework:
                 data:
@@ -24,7 +26,7 @@ spring:
            non_contextual_creation: true
 
      hibernate:
-       ddl-auto: update
+       ddl-auto: create-drop
 # spring.r2dbc.url=r2dbc:postgresql://postgres:postgres@localhost:5432/postgres
 # spring.r2dbc.pool.enabled=true
 # spring.r2dbc.pool.initial-size=5

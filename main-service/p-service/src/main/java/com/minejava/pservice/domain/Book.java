@@ -20,8 +20,8 @@ public class Book {
 
     @Id
     //private UUID id;
-    @Builder.Default
-    private UUID id = UUID.randomUUID();
+    @Column("id")
+    private UUID id;
 
 
     @Column("title")
@@ -35,13 +35,4 @@ public class Book {
 
     @Column("price")
     private Double price;
-
-
-    public Book(String title, String isbn, String author, Double price) {
-        this.title = title;
-        this.isbn = isbn;
-        this.author = author;
-        this.price = price;
-    }
-
 }

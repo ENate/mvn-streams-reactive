@@ -12,6 +12,7 @@ import com.minejava.pservice.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,13 +33,14 @@ public class BookRestController {
     @Autowired
     private final BookService bookService;
 
-    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    //@GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping("/all")
     public Flux<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
     @PostMapping("/create")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Book> create(@RequestBody Book book){
         return bookService.createBook(book);
     }
@@ -51,14 +53,26 @@ public class BookRestController {
     }
 
 
-    @GetMapping("/{author}")
-    public Flux<Book> findByAuthor(@RequestParam String name) {
-        return bookService.findByAuthor(name);
+    // @GetMapping("/{author}")
+    // public Flux<Book> findByAuthor(@RequestParam String name) {
+    //     return bookService.findByAuthor(name);
+    // }
+
+    // @GetMapping("/search")
+    // public Flux<Book> searchUsers(@RequestParam("title") String title) {
+    //     return bookService.fetchUsers(title);
+    // }
+
+    @PutMapping("/{bookId}")
+    public Mono<ResponseEntity<Book>> updateBookById(@PathVariable String bookId, @RequestBody Book book){
+        return bookService.updateBook(bookId, book)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.badRequest().build());
     }
 
-    @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> deleteUserById(@PathVariable String id){
-        return bookService.deleteBookById(id)
+    @DeleteMapping("/{bookId}")
+    public Mono<ResponseEntity<Void>> deleteUserById(@PathVariable String bookId){
+        return bookService.deleteBookById(bookId)
                 .map( r -> ResponseEntity.ok().<Void>build())
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }

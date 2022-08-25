@@ -38,6 +38,17 @@ public class BookHandler {
                 );
     }
 
+    public Mono<ServerResponse> updateBookById(ServerRequest request) {
+        String id = request.pathVariable("bookId");
+        Mono<Book> updatedBook = request.bodyToMono(Book.class);
+
+        return updatedBook
+                .flatMap(u -> ServerResponse
+                        .ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(nBookService.updateBook(id, u), Book.class)
+                );
+    }
     public Mono<ServerResponse> getBookById(ServerRequest request) {
         return nBookService
                 .findById(request.pathVariable("id"))
