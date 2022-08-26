@@ -15,7 +15,7 @@ public class PostgresConfiguration {
     public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
         initializer.setConnectionFactory(connectionFactory);
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator(); //new ClassPathResource("schema.sql"));
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator(new ClassPathResource("schema.sql"));
         initializer.setDatabasePopulator(populator);
         return initializer;
     }

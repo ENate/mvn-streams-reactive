@@ -37,16 +37,16 @@ public class Book implements Persistable<String>{
     private Double price;
 
     @Transient
-private boolean newBook;
+    private boolean newBook;
 
-@Override
-@Transient
-public boolean isNew() {
-    return this.newBook || id == null;
-}
+    @Override
+    @Transient
+        public boolean isNew() {
+        return this.newBook || id == null;
+    }
 
-public Book setAsNew(){
-    this.newBook = true;
-    return this;
-}
+    public Book setAsNew(){
+        this.newBook = true;
+        return this;
+    }
 }

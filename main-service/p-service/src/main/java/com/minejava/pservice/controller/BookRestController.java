@@ -69,7 +69,7 @@ public class BookRestController {
                 .defaultIfEmpty(ResponseEntity.badRequest().build());
     }
 
-    @DeleteMapping("/{bookId}")
+    @DeleteMapping("/delete/{bookId}")
     public Mono<ResponseEntity<Void>> deleteUserById(@PathVariable String bookId){
         return bookService.deleteBookById(bookId)
                 .map( r -> ResponseEntity.ok().<Void>build())

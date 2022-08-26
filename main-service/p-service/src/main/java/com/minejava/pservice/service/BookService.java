@@ -30,7 +30,7 @@ public class BookService implements IBookService{
     }
     @Override
     public Mono<Book> createBook(Book book) {
-        return bookRepository.save(book);
+        return bookRepository.save(book.setAsNew());
     }
 
 
