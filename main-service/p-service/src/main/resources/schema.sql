@@ -1,8 +1,6 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
 
 CREATE TABLE IF NOT EXISTS book (
-    id TEXT NOT NULL,
+    id TEXT,
     title TEXT NOT NULL,
     isbn TEXT NOT NULL,
     author TEXT NOT NULL,

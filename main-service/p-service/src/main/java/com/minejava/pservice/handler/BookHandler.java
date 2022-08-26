@@ -38,6 +38,7 @@ public class BookHandler {
                 );
     }
 
+
     public Mono<ServerResponse> updateBookById(ServerRequest request) {
         String id = request.pathVariable("bookId");
         Mono<Book> updatedBook = request.bodyToMono(Book.class);

@@ -52,7 +52,7 @@ public class BookService implements IBookService{
         .flatMap(dUser -> {
             dUser.setTitle(book.getTitle());
             dUser.setPrice(book.getPrice());
-            return bookRepository.save(book);
+            return bookRepository.save(book.setAsNew());
         });
     }
 
