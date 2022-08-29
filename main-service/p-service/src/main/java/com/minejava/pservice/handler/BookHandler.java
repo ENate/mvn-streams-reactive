@@ -52,7 +52,7 @@ public class BookHandler {
     }
     public Mono<ServerResponse> getBookById(ServerRequest request) {
         return nBookService
-                .findById(request.pathVariable("id"))
+                .findByIsbn(request.pathVariable("id"))
                 .flatMap(user -> ServerResponse
                         .ok()
                         .contentType(MediaType.APPLICATION_JSON)
@@ -62,7 +62,7 @@ public class BookHandler {
     }
 
     public Mono<ServerResponse> deleteBookById(ServerRequest request){
-        return nBookService.deleteBookById(request.pathVariable("userId"))
+        return nBookService.deleteBook(request.pathVariable("bookId"))
                 .flatMap(u -> ServerResponse.ok().body(u, Book.class))
                 .switchIfEmpty(ServerResponse.notFound().build());
     }

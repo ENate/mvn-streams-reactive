@@ -16,12 +16,13 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book implements Persistable<String>{
+public class Book  {
+// implements Persistable<String>{
 
     @Id
     //private UUID id;
     @Column("id")
-    private String id;
+    private Long id;
 
 
     @Column("title")
@@ -36,17 +37,21 @@ public class Book implements Persistable<String>{
     @Column("price")
     private Double price;
 
-    @Transient
-    private boolean newBook;
+    boolean hasId() {
+		return id != null;
+	}
 
-    @Override
-    @Transient
-        public boolean isNew() {
-        return this.newBook || id == null;
-    }
+    // @Transient
+    // private boolean newBook;
 
-    public Book setAsNew(){
-        this.newBook = true;
-        return this;
-    }
+    // @Override
+    // @Transient
+    //     public boolean isNew() {
+    //     return this.newBook || id == null;
+    // }
+
+    // public Book setAsNew(){
+    //     this.newBook = true;
+    //     return this;
+    // }
 }

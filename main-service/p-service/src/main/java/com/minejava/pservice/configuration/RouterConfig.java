@@ -20,6 +20,6 @@ public class RouterConfig {
                 .andRoute(GET("/handler/books/{id}").and(contentType(MediaType.APPLICATION_JSON)), handler::getBookById)
                 .andRoute(POST("/handler/books/create").and(accept(MediaType.APPLICATION_JSON)), handler::createBookItem)
                 .andRoute(PUT("/handler/books/{bookId}").and(contentType(MediaType.APPLICATION_JSON)), handler::updateBookById)
-                .andRoute(DELETE("/handler/delete/books/{id}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteBookById);
+                .andRoute(DELETE("/handler/books/delete/{bookId}").and(accept(MediaType.APPLICATION_JSON)), handler::deleteBookById);
     }
 }

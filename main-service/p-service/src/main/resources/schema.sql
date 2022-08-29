@@ -1,6 +1,6 @@
 
 CREATE TABLE IF NOT EXISTS book (
-    id TEXT,
+    id bigint,
     title TEXT NOT NULL,
     isbn TEXT NOT NULL,
     author TEXT NOT NULL,

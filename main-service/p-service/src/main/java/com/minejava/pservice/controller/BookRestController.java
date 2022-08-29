@@ -45,22 +45,11 @@ public class BookRestController {
     }
 
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Book>> getBookById(@PathVariable String id){
-        Mono<Book> booker = bookService.findById(id);
+    public Mono<ResponseEntity<Book>> getBookById(@PathVariable Long id){
+        Mono<Book> booker = bookService.findBookById(id);
         return booker.map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
-
-
-    // @GetMapping("/{author}")
-    // public Flux<Book> findByAuthor(@RequestParam String name) {
-    //     return bookService.findByAuthor(name);
-    // }
-
-    // @GetMapping("/search")
-    // public Flux<Book> searchUsers(@RequestParam("title") String title) {
-    //     return bookService.fetchUsers(title);
-    // }
 
     @PutMapping("/{bookId}")
     public Mono<ResponseEntity<Book>> updateBookById(@PathVariable String bookId, @RequestBody Book book){
@@ -70,8 +59,8 @@ public class BookRestController {
     }
 
     @DeleteMapping("/delete/{bookId}")
-    public Mono<ResponseEntity<Void>> deleteUserById(@PathVariable String bookId){
-        return bookService.deleteBookById(bookId)
+    public Mono<ResponseEntity<Void>> deleteBookById(@PathVariable String bookId){
+        return bookService.deleteBook(bookId)
                 .map( r -> ResponseEntity.ok().<Void>build())
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }

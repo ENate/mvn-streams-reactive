@@ -25,12 +25,12 @@ public class BookService implements IBookService{
 
     // Mono returns 0 to 1
     @Override
-    public Mono<Book> findById(String id)  {
+    public Mono<Book> findBookById(Long id)  {
         return bookRepository.findById(id);
     }
     @Override
     public Mono<Book> createBook(Book book) {
-        return bookRepository.save(book.setAsNew());
+        return bookRepository.save(book);
     }
 
 
@@ -39,28 +39,28 @@ public class BookService implements IBookService{
         return bookRepository.findBooksByAuthorContainingIgnoreCase(author);
     }
 
-    public Mono<Book> deleteBookById(String userId){
-        return bookRepository.findById(userId)
-                .flatMap(existingUser -> bookRepository.delete(existingUser)
-                        .then(Mono.just(existingUser)));
-    }
-
     @Override
     public Mono<Book> updateBook(String bId, Book book) {
         // Implemented Auto-generated method stub
-        return bookRepository.findById(bId)
+        return bookRepository.findByIsbn(bId)
         .flatMap(dUser -> {
             dUser.setTitle(book.getTitle());
             dUser.setPrice(book.getPrice());
-            return bookRepository.save(book.setAsNew());
+            return bookRepository.save(book);
         });
     }
 
     @Override
-    public Mono<Book> deleteBook(String pId) {
+    public Mono<Book> deleteBook(String isbn) {
         // Implement delete operation
-        return bookRepository.findById(pId)
+        return bookRepository.findByIsbn(isbn)
                .flatMap(eUser -> bookRepository.delete(eUser)
                .then(Mono.just(eUser)));
+    }
+
+    @Override
+    public Mono<Book> findByIsbn(String isbn) {
+        // Done Auto-generated method stub
+        return bookRepository.findByIsbn(isbn);
     }
 }
