@@ -1,2 +1,1 @@
-# mvn-streams-reactive
-A multi-module maven spring boot kafka application
+# Reactive Spring JPA, spring boot and spring security implemented via the reactive stack. 
