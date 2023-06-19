@@ -9,3 +9,10 @@ This repository contains a spring boot (p-, c- and m-) microservices implemented
 - spring security 6.0.+
 - install docker and docker compose containers which are suitable for your OS, platform.
 
+### To run p-service:
+`mvn clean install`
+
+then 
+`cd main-service/p-service` and run as follows
+
+`mvn spring-boot:run`
