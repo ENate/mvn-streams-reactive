@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.1</version>
+    <version>3.1.0</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -30,8 +30,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <spring.boot.maven.plugin.version>3.0.1</spring.boot.maven.plugin.version>
-    <spring.boot.dependencies.version>3.0.1</spring.boot.dependencies.version>
+    <spring-cloud.version>2022.0.3</spring-cloud.version>
+    <spring.boot.maven.plugin.version>3.1.0</spring.boot.maven.plugin.version>
+    <spring.boot.dependencies.version>3.1.0</spring.boot.dependencies.version>
   </properties>
 
   <dependencyManagement>
@@ -42,6 +43,13 @@
         <version>${spring.boot.dependencies.version}</version>
         <scope>import</scope>
         <type>pom</type>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -61,6 +69,11 @@
       <groupId>io.projectreactor</groupId>
       <artifactId>reactor-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <!-- Add spring boot starter resilience4j -->
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
     </dependency>
 
   </dependencies>
