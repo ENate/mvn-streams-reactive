@@ -1,13 +1,18 @@
 package com.minejava.pservice.service;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.minejava.pservice.domain.Book;
 import com.minejava.pservice.repository.BookRepository;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
+import lombok.extern.log4j.Log4j2;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-
+//import org.springframework.integration.handler.advice.RequestHandlerCircuitBreakerAdvice.CircuitBreakerOpenException
+@Log4j2
 @Service
 @Transactional
 public class BookService implements IBookService{
@@ -25,9 +30,25 @@ public class BookService implements IBookService{
 
     // Mono returns 0 to 1
     @Override
+    @Retry(name = "books")
+    @CircuitBreaker(name = "books")
     public Mono<Book> findBookById(Long id)  {
-        return bookRepository.findById(id);
+        return bookRepository.findById(id)
+        .onErrorMap(RetryExceptionWrapper.class, Throwable::getCause);
+        .onErrorReturn(CircuitBreakerOpenException.class);
+        //                    getProductFallbackValue(id));
     }
+    private Object getProductFallbackValue(Long id) {
+
+        if (id == 14) {
+            String errMsg = " Id: " + id + " not found in fallback cache!";
+            log.warn(errMsg);
+            throw new RuntimeException(errMsg);
+        }
+
+        return null;
+    }
+
     @Override
     public Mono<Book> createBook(Book book) {
         return bookRepository.save(book);
