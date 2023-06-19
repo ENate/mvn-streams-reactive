@@ -34,9 +34,9 @@ public class BookService implements IBookService{
     @CircuitBreaker(name = "books")
     public Mono<Book> findBookById(Long id)  {
         return bookRepository.findById(id)
-        .onErrorMap(RetryExceptionWrapper.class, Throwable::getCause);
-        .onErrorReturn(CircuitBreakerOpenException.class);
-        //                    getProductFallbackValue(id));
+        .onErrorMap(RetryExceptionWrapper.class, Throwable::getCause)
+        .onErrorReturn(CircuitBreakerOpenException.class)
+                            getProductFallbackValue(id));
     }
     private Object getProductFallbackValue(Long id) {
 
