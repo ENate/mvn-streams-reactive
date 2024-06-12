@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>main-service</artifactId>
         <groupId>com.minejava</groupId>
@@ -11,11 +11,6 @@
 
     <artifactId>m-service</artifactId>
 
-    <properties>
-        <project.build.SourceEncoding>UTF-8</project.build.SourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
 <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -25,9 +20,9 @@
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-      </dependency>
+    </dependency>
 
-      <dependency>
+    <dependency>
         <groupId>org.springframework.data</groupId>
         <artifactId>spring-data-mongodb</artifactId>
     </dependency>
@@ -39,10 +34,10 @@
 
 
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-devtools</artifactId>
-</dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+    </dependency>
 
 
 

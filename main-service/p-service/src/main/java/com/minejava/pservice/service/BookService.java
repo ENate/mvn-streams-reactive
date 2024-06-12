@@ -1,5 +1,5 @@
 package com.minejava.pservice.service;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+// import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,8 +34,8 @@ public class BookService implements IBookService{
     @CircuitBreaker(name = "books")
     public Mono<Book> findBookById(Long id)  {
         return bookRepository.findById(id);
-        .onErrorMap(RetryExceptionWrapper.class, Throwable::getCause)
-        .onErrorReturn(CircuitBreakerOpenException.class, getProductFallbackValue(id));
+        // .onErrorMap(RetryExceptionWrapper.class, Throwable::getCause)
+        //.onErrorReturn(CircuitBreakerOpenException.class, getProductFallbackValue(id));
     }
     private Object getProductFallbackValue(Long id) {
 
@@ -74,8 +74,8 @@ public class BookService implements IBookService{
     public Mono<Book> deleteBook(String isbn) {
         // Implement delete operation
         return bookRepository.findByIsbn(isbn)
-               .flatMap(eUser -> bookRepository.delete(eUser)
-               .then(Mono.just(eUser)));
+            .flatMap(eUser -> bookRepository.delete(eUser)
+            .then(Mono.just(eUser)));
     }
 
     @Override
